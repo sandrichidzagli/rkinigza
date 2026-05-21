@@ -1,0 +1,42 @@
+<header class="navbar">
+  <div class="logo" (click)="router.navigate(['/']); closeNav()">STEP RAILWAY</div>
+
+  <div class="hamburger" [class.open]="navOpen" (click)="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <nav class="nav-links" [class.active]="navOpen">
+    <button class="nav-btn" (click)="router.navigate(['/tickets']); closeNav()">
+      {{ t('navTickets') }}
+    </button>
+
+    <ng-container *ngIf="!isLoggedIn">
+      <button class="nav-btn" (click)="router.navigate(['/auth']); closeNav()">
+        {{ t('navAuth') }}
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="isLoggedIn">
+      <button class="nav-btn logout-btn" (click)="logout()">
+        {{ t('logoutBtn')  || 'Log Out' }}
+      </button>
+    </ng-container>
+
+    <div class="lang-flags">
+      <button
+        *ngFor="let l of languages"
+        class="flag-btn"
+        [class.active-flag]="currentLang === l.code"
+        [title]="l.label"
+        (click)="onLangChange(l.code)">
+        {{ l.flag }}
+      </button>
+    </div>
+
+    <button class="theme-btn" (click)="toggleTheme()">
+      {{ dark ? t('themeDay') : t('themeNight') }}
+    </button>
+  </nav>
+
+  <div class="nav-backdrop" *ngIf="navOpen" (click)="closeNav()"></div>
+</header>

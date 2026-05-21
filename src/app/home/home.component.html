@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<main class="hero-section">
+  <div class="hero-text">
+    <h1>{{ t('heroTitle') }}</h1>
+    <h3>{{ t('heroSubtitle') }}</h3>
+  </div>
+
+  <section class="search-container">
+    <form id="bookingForm" (ngSubmit)="onSearch()">
+      <select [(ngModel)]="from" name="from" required>
+        <option value="" disabled selected>{{ t('fromPlaceholder') }}</option>
+        <option *ngFor="let s of stations" [value]="s.name">{{ s.name }}</option>
+      </select>
+      <select [(ngModel)]="to" name="to" required>
+        <option value="" disabled selected>{{ t('toPlaceholder') }}</option>
+        <option *ngFor="let s of stations" [value]="s.name">{{ s.name }}</option>
+      </select>
+      <input type="date" [(ngModel)]="departureDate" name="departureDate" [min]="today" required>
+      <input type="number" [(ngModel)]="passengers" name="passengers"
+        [placeholder]="t('passengersPlaceholder')" min="1">
+      <button type="submit">{{ t('searchBtn') }}</button>
+    </form>
+  </section>
+</main>
+
+<section class="info-section">
+  <div class="info-container">
+    <div class="info-image">
+      <img src="https://railway.stepprojects.ge/assets/img/train/trainticket.png" alt="Train ticket">
+    </div>
+    <div class="info-text-content">
+      <h2>{{ t('infoTitle') }}</h2>
+      <p class="description">{{ t('infoDesc') }}</p>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🚂</div>
+          <h4>{{ t('feature1') }}</h4>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🕐</div>
+          <h4>{{ t('feature2') }}</h4>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔒</div>
+          <h4>{{ t('feature3') }}</h4>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💳</div>
+          <h4>{{ t('feature4') }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

@@ -1,0 +1,179 @@
+.trains-page {
+  min-height: calc(100vh - 160px);
+  background: white;
+}
+
+.trains-hero {
+  width: 100%;
+  background: linear-gradient(135deg, #2f45c5, #1a2a8a);
+  padding: 60px 8%;
+  display: flex;
+  align-items: center;
+}
+
+.trains-hero h1 {
+  font-size: 22px;
+  color: white;
+  font-weight: 700;
+}
+
+.trains-body {
+  padding: 40px 8%;
+}
+
+.list-heading {
+  font-size: 20px;
+  color: #888;
+  margin-bottom: 28px;
+  font-weight: 600;
+}
+
+.train-list {
+  max-width: 1000px;
+}
+
+.state-msg {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #666;
+}
+
+.loading-msg {
+  color: #2f45c5;
+  font-weight: 600;
+}
+
+.error-msg {
+  color: #e53e3e;
+}
+
+.train-card {
+  background: white;
+  padding: 28px 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  border: 1px solid #eef0f8;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.train-card:hover {
+  box-shadow: 0 8px 32px rgba(43, 65, 189, 0.12);
+  transform: translateY(-2px);
+}
+
+.train-info {
+  flex: 1;
+  min-width: 140px;
+}
+
+.train-number {
+  font-size: 17px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.train-route {
+  color: #666;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.train-time {
+  text-align: center;
+}
+
+.train-time strong {
+  font-size: 18px;
+  font-weight: 700;
+  display: block;
+}
+
+.train-time p {
+  color: #888;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.book-btn {
+  background: #2f45c5;
+  color: white;
+  border: none;
+  padding: 13px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.book-btn:hover {
+  background: #1a2a8a;
+  transform: translateY(-1px);
+}
+
+
+:host-context(body.dark-mode) .trains-page {
+  background: #161625;
+}
+
+:host-context(body.dark-mode) .trains-hero {
+  background: linear-gradient(135deg, #0f1035, #0d1040);
+}
+
+:host-context(body.dark-mode) .list-heading {
+  color: #666;
+}
+
+:host-context(body.dark-mode) .train-card {
+  background: #1e1e35;
+  border-color: #2d2d4e;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+:host-context(body.dark-mode) .train-number {
+  color: #c5ccff;
+}
+
+:host-context(body.dark-mode) .train-route {
+  color: #888;
+}
+
+:host-context(body.dark-mode) .train-time strong {
+  color: #c5ccff;
+}
+
+@media (max-width: 768px) {
+  .trains-hero {
+    padding: 40px 6%;
+  }
+
+  .trains-hero h1 {
+    font-size: 18px;
+  }
+
+  .trains-body {
+    padding: 30px 5%;
+  }
+
+  .train-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+  }
+
+  .train-card>div {
+    text-align: center;
+  }
+
+  .book-btn {
+    width: 100%;
+    padding: 14px;
+  }
+}

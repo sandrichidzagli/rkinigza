@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<main class="tickets-main">
+  <div class="form-container">
+    <h2 class="page-title">{{ t('navTickets') }}</h2>
+
+    <div class="form-group">
+      <label>{{ t('ticketNumberLbl') }}</label>
+      <input type="text" [(ngModel)]="ticketId" [placeholder]="t('ticketPlaceholder')">
+    </div>
+
+    <div class="btn-row">
+      <button class="check-btn" (click)="checkTicket()">{{ t('checkBtn') }}</button>
+      <button class="cancel-btn" [disabled]="!cancelEnabled" (click)="cancelTicket()">
+        {{ t('cancelBtn') }}
+      </button>
+    </div>
+
+    <div *ngIf="resultMessage" [class]="resultType" class="result-area">
+      {{ resultMessage }}
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

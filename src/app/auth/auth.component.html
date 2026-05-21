@@ -1,0 +1,74 @@
+<app-header></app-header>
+
+<main class="auth-main">
+  <div class="auth-container">
+
+    <!-- LOGIN FORM -->
+    <form class="form" *ngIf="!showRegister" (ngSubmit)="onLogin()">
+      <h2>{{ t('welcomeBack') }}</h2>
+      <input type="email" [(ngModel)]="loginEmail" name="loginEmail" [placeholder]="t('emailPlaceholder')" required>
+      <div class="password-wrap">
+        <input [type]="showLoginPassword ? 'text' : 'password'" [(ngModel)]="loginPassword" name="loginPassword" [placeholder]="t('passwordPlaceholder')" required>
+        <button type="button" class="eye-btn" (click)="showLoginPassword = !showLoginPassword">
+          <svg *ngIf="!showLoginPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg *ngIf="showLoginPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </button>
+      </div>
+      <button type="submit">{{ t('loginBtn') }}</button>
+      <p>{{ t('noAccount') }} <span class="toggle" (click)="showRegister=true">{{ t('registerLink') }}</span></p>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form class="form" *ngIf="showRegister" (ngSubmit)="onRegister()">
+      <h2>{{ t('createAccountTitle') }}</h2>
+      <div class="two-col">
+        <input type="text" [(ngModel)]="regFirstName" name="regFirstName" [placeholder]="t('firstNamePlaceholder')" required>
+        <input type="text" [(ngModel)]="regLastName" name="regLastName" [placeholder]="t('lastNamePlaceholder')" required>
+      </div>
+      <div class="two-col">
+        <input type="number" [(ngModel)]="regAge" name="regAge" [placeholder]="t('agePlaceholder')" min="1" required>
+        <select [(ngModel)]="regGender" name="regGender" required>
+          <option value="MALE">MALE</option>
+          <option value="FEMALE">FEMALE</option>
+          <option value="OTHER">OTHER</option>
+        </select>
+      </div>
+      <input type="email" [(ngModel)]="regEmail" name="regEmail" [placeholder]="t('emailPlaceholder')" required>
+      <div class="phone-row">
+        <select [(ngModel)]="countryCode" name="countryCode">
+          <option value="+995">+995 (GEO)</option>
+          <option value="+1">+1 (USA)</option>
+          <option value="+44">+44 (UK)</option>
+          <option value="+7">+7 (RU)</option>
+          <option value="+34">+34 (ES)</option>
+          <option value="+90">+90 (TR)</option>
+        </select>
+        <input type="tel" [(ngModel)]="regPhone" name="regPhone" [placeholder]="t('phonePlaceholder')" required>
+      </div>
+      <input type="text" [(ngModel)]="regAddress" name="regAddress" [placeholder]="t('addressPlaceholder')" required>
+      <div class="two-col">
+        <input type="text" [(ngModel)]="regZipcode" name="regZipcode" [placeholder]="t('zipcodePlaceholder')" required>
+        <input type="url" [(ngModel)]="regAvatar" name="regAvatar" [placeholder]="t('avatarPlaceholder')">
+      </div>
+      <div class="password-wrap">
+        <input [type]="showRegPassword ? 'text' : 'password'" [(ngModel)]="regPassword" name="regPassword" [placeholder]="t('passwordPlaceholder')" required>
+        <button type="button" class="eye-btn" (click)="showRegPassword = !showRegPassword">
+          <svg *ngIf="!showRegPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg *ngIf="showRegPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </button>
+      </div>
+      <div class="password-wrap">
+        <input [type]="showConfirmPassword ? 'text' : 'password'" [(ngModel)]="confirmPassword" name="confirmPassword" [placeholder]="t('confirmPassPlaceholder')" required>
+        <button type="button" class="eye-btn" (click)="showConfirmPassword = !showConfirmPassword">
+          <svg *ngIf="!showConfirmPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg *ngIf="showConfirmPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </button>
+      </div>
+      <button type="submit">{{ t('createAccountTitle') }}</button>
+      <p>{{ t('haveAccount') }} <span class="toggle" (click)="showRegister=false">{{ t('loginLink') }}</span></p>
+    </form>
+
+  </div>
+</main>
+
+<app-footer></app-footer>

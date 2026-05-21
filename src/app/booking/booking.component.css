@@ -1,0 +1,663 @@
+ :root {
+   --primary: #2b41bd;
+   --primary-dark: #1a2a8c;
+   --border: #e4e8f0;
+ }
+
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Segoe UI', sans-serif;
+ }
+
+ main {
+   background: #f6f8ff;
+   min-height: calc(100vh - 160px);
+   padding: 40px 0 60px;
+ }
+
+ .container {
+   max-width: 1100px;
+   margin: 0 auto;
+   padding: 0 20px;
+ }
+
+ .booking-grid {
+   display: grid;
+   grid-template-columns: 2fr 1fr;
+   gap: 24px;
+ }
+.checkbox-container input{
+  width: 10px;
+}
+ .card {
+   background: white;
+   padding: 30px;
+   border-radius: 14px;
+   border: 1px solid var(--border);
+   height: fit-content;
+   box-shadow: 0 4px 20px rgba(43, 65, 189, 0.06);
+ }
+
+ .page-title {
+   font-size: 18px;
+   font-weight: 700;
+   margin-bottom: 20px;
+   padding-bottom: 16px;
+   border-bottom: 1px dashed var(--border);
+ }
+
+ section {
+   width: 100%;
+   height: 200px;
+   background-color: #1a2a8c;
+   color: white;
+   padding-top: 50px;
+   padding-left: 120px;
+ }
+
+ .route-info {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   padding: 16px 20px;
+   border: 1px solid var(--border);
+   border-radius: 10px;
+   background: #f8f9ff;
+   margin-bottom: 24px;
+ }
+
+ .route-point {
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+ }
+
+ .route-point:last-child {
+   text-align: right;
+   align-items: flex-end;
+ }
+
+ .route-point .time {
+   font-size: 1.1rem;
+   font-weight: 700;
+ }
+
+ .route-point .city {
+   font-size: 13px;
+   color: #777;
+ }
+
+ .train-meta {
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+ }
+
+ .train-number {
+   font-size: 13px;
+   font-weight: 600;
+ }
+
+ .train-name {
+   font-size: 13px;
+   color: #777;
+ }
+
+
+ .section-title {
+   font-size: 16px;
+   font-weight: 700;
+   margin: 24px 0 14px;
+   padding-top: 8px;
+   border-top: 1px dashed var(--border);
+ }
+
+ .passenger-label {
+   font-size: 14px;
+   font-weight: 600;
+   margin-bottom: 12px;
+   color: #555;
+ }
+
+ .input-row {
+   display: flex;
+   gap: 12px;
+   margin-bottom: 16px;
+ }
+
+ input {
+   width: 100%;
+   padding: 11px 14px;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   font-size: 14px;
+   outline: none;
+   transition: border-color 0.2s;
+ }
+
+ input:focus {
+   border-color: var(--primary);
+ }
+
+ .passenger-row {
+   display: flex;
+   border: 1px solid var(--border);
+   border-radius: 10px;
+   overflow: hidden;
+   margin-bottom: 16px;
+ }
+
+ .seat-display {
+   background: var(--primary-dark);
+   color: white;
+   background-color: #1a2a8c;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 10px 16px;
+   min-width: 80px;
+   flex-shrink: 0;
+ }
+
+ .seat-display .label {
+   font-size: 11px;
+ }
+
+ .sami {
+   display: flex;
+   flex: 1;
+ }
+
+ .sami input {
+   border: none;
+   border-left: 1px solid var(--border);
+   border-radius: 0;
+   padding: 12px 12px;
+   flex: 1;
+   height: 52px;
+ }
+
+ .btn-select-seat {
+   background: var(--primary-dark);
+   color: white;
+   background-color: #1a2a8c;
+   border: none;
+   padding: 12px 16px;
+   font-size: 13px;
+   font-weight: 600;
+   cursor: pointer;
+   flex-shrink: 0;
+   
+ }
+
+ .btn-select-seat:hover {
+   background-color: white;
+   color: blue;
+
+ }
+
+
+ .baggage-section {
+   margin-top: 8px;
+ }
+
+ .bag-options {
+   display: flex;
+   gap: 18px;
+   margin-top: 10px;
+   flex-wrap: wrap;
+ }
+
+ .bag-item {
+   display: flex;
+   align-items: flex-start;
+   gap: 12px;
+   flex: 1;
+   min-width: 160px;
+   cursor: default;
+ }
+
+ .bag-icon-wrap {
+   width: 44px;
+   height: 44px;
+   border-radius: 10px;
+   background: #eef2ff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 20px;
+   flex-shrink: 0;
+ }
+
+ .bag-txt h5 {
+   font-size: 13px;
+   font-weight: 700;
+   margin-bottom: 2px;
+ }
+
+ .bag-txt p {
+   font-size: 11px;
+   color: #888;
+   margin-bottom: 5px;
+   line-height: 1.4;
+ }
+
+ .bag-status {
+   display: flex;
+   align-items: center;
+   gap: 4px;
+   font-size: 12px;
+   font-weight: 600;
+ }
+
+ .bag-status.included {
+   color: var(--primary);
+ }
+
+ .bag-status.not-included {
+   color: #e74c3c;
+ }
+
+ .status-icon {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 10px;
+ }
+
+ .status-icon.check {
+   color: var(--primary);
+ }
+
+ .status-icon.cross {
+   color: #e74c3c;
+ }
+
+ .right-panel h3 {
+   font-size: 17px;
+   font-weight: 700;
+   color: var(--primary);
+   text-align: center;
+   margin-bottom: 18px;
+   padding-bottom: 14px;
+   border-bottom: 1px solid var(--border);
+ }
+
+ .invoice-header-row {
+   display: flex;
+   justify-content: space-between;
+   font-size: 13px;
+   color: black;
+   margin-bottom: 10px;
+ }
+
+ .inv-row {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 10px;
+   font-size: 14px;
+   border: 1px solid var(--border);
+   border-radius: 8px;
+   padding: 10px 12px;
+ }
+
+ .inv-divider {
+   height: 1px;
+   background: var(--border);
+   margin: 10px 0;
+ }
+
+ .terms-area {
+   margin: 18px 0;
+ }
+
+ .checkbox-container {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   cursor: pointer;
+   font-size: 13px;
+   color: #555;
+ }
+
+ .btn-primary {
+   background: var(--primary-dark);
+   color: white;
+   background-color: #1a2a8c;
+   border: none;
+   padding: 14px;
+   border-radius: 10px;
+   width: 100%;
+   cursor: pointer;
+   font-weight: 700;
+   font-size: 14px;
+   transition: background 0.2s, transform 0.15s;
+ }
+
+ .btn-primary:hover {
+   background: var(--primary);
+   color: blue;
+ }
+
+ .modal-overlay {
+   position: fixed;
+   inset: 0;
+   background: rgba(0, 0, 0, 0.5);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 1000;
+   padding: 20px;
+ }
+
+ .modal-content {
+   background: white;
+   padding: 28px;
+   border-radius: 16px;
+   width: 100%;
+   max-width: 450px;
+ }
+
+ .modal-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
+ }
+
+ .modal-header h3 {
+   font-size: 18px;
+   font-weight: 700;
+ }
+
+ .close-x {
+   background: none;
+   border: none;
+   font-size: 20px;
+   cursor: pointer;
+   color: #888;
+ }
+
+ .close-x:hover {
+   color: #333;
+ }
+
+ .class-grid {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+ }
+
+ .class-grid .btn-secondary {
+   padding: 14px;
+   text-align: left;
+   font-weight: 600;
+ }
+
+ .btn-secondary {
+   border: 1px solid var(--border);
+   background: white;
+   padding: 8px 14px;
+   border-radius: 8px;
+   cursor: pointer;
+   font-size: 14px;
+   transition: background 0.2s, border-color 0.2s;
+ }
+
+ .btn-secondary:hover {
+   background: #f4f6ff;
+   border-color: var(--primary);
+   color: var(--primary);
+ }
+
+ .seat-grid {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 8px;
+   max-height: 280px;
+   overflow-y: auto;
+   padding-right: 4px;
+   margin-top: 16px;
+ }
+
+ .seat {
+   padding: 12px 5px;
+   border-radius: 8px;
+   text-align: center;
+   cursor: pointer;
+   font-weight: 700;
+   font-size: 13px;
+   background: #d4edda;
+   border: 1px solid #c3e6cb;
+   color: #155724;
+   transition: transform 0.15s;
+ }
+
+ .seat.occupied {
+   background: #f8d7da;
+   border-color: #f5c6cb;
+   cursor: not-allowed;
+   opacity: 0.6;
+   color: #721c24;
+ }
+
+ .seat.selected {
+   background: var(--primary) !important;
+   color: white !important;
+   transform: scale(1.05);
+ }
+
+ .seat:hover:not(.occupied) {
+   opacity: 0.8;
+ }
+
+ .full-width {
+   width: 100%;
+   margin-top: 18px;
+ }
+
+
+ .success-screen {
+   position: fixed;
+   inset: 0;
+   background: white;
+   z-index: 2000;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 20px;
+ }
+
+ .success-card {
+   text-align: center;
+   max-width: 420px;
+   width: 100%;
+ }
+
+ .check-icon {
+   font-size: 64px;
+   color: #2ecc71;
+   margin-bottom: 10px;
+ }
+
+ .success-card h1 {
+   font-size: 24px;
+   margin-bottom: 20px;
+   color: #27ae60;
+ }
+
+ .success-card p {
+   font-size: 16px;
+   margin-bottom: 24px;
+   color: #555;
+ }
+
+ .ticket-id-box {
+   background: #f8f9fa;
+   border: 2px dashed var(--primary);
+   padding: 16px;
+   border-radius: 12px;
+   margin: 20px 0;
+ }
+
+ .ticket-id-box span {
+   display: block;
+   font-size: 13px;
+   color: #666;
+ }
+
+ .ticket-id-box strong {
+   display: block;
+   font-size: 16px;
+   margin-top: 6px;
+   word-break: break-all;
+   color: var(--primary);
+ }
+
+ :host-context(body.dark-mode) main {
+   background: #12121f;
+ }
+
+ :host-context(body.dark-mode) .card {
+   background: #1e1e35;
+   border-color: #2d2d4e;
+   box-shadow: none;
+ }
+
+ :host-context(body.dark-mode) .page-title {
+   color: #c5ccff;
+ }
+
+ :host-context(body.dark-mode) .route-info {
+   background: #252540;
+   border-color: #3d3d60;
+ }
+
+ :host-context(body.dark-mode) .route-point .time {
+   color: #c5ccff;
+ }
+
+ :host-context(body.dark-mode) .route-point .city {
+   color: #888;
+ }
+
+ :host-context(body.dark-mode) .section-title {
+   color: #c5ccff;
+   border-top-color: #3d3d60;
+ }
+
+ :host-context(body.dark-mode) input {
+   background: #252540;
+   color: white;
+   border-color: #3d3d60;
+ }
+
+ :host-context(body.dark-mode) .sami input {
+   border-left-color: #3d3d60;
+ }
+
+ :host-context(body.dark-mode) .passenger-row {
+   border-color: #3d3d60;
+ }
+
+ :host-context(body.dark-mode) .bag-icon-wrap {
+   background: #252540;
+ }
+
+ :host-context(body.dark-mode) .bag-txt h5 {
+   color: #c5ccff;
+ }
+
+ :host-context(body.dark-mode) .right-panel h3 {
+   color: #6c82f5;
+ }
+
+ :host-context(body.dark-mode) .inv-row {
+   border-color: #3d3d60;
+   color: #c5ccff;
+ }
+
+ :host-context(body.dark-mode) .inv-divider {
+   background: #3d3d60;
+ }
+
+ :host-context(body.dark-mode) .checkbox-container {
+   color: #aab0cc;
+ }
+
+ :host-context(body.dark-mode) .invoice-header-row {
+   color: #666;
+ }
+
+ :host-context(body.dark-mode) .modal-content {
+   background: #1e1e35;
+ }
+
+ :host-context(body.dark-mode) .modal-header h3 {
+   color: #c5ccff;
+ }
+
+ :host-context(body.dark-mode) .close-x {
+   color: #666;
+ }
+
+ :host-context(body.dark-mode) .btn-secondary {
+   background: #252540;
+   border-color: #3d3d60;
+   color: #c5ccff;
+ }
+
+ :host-context(body.dark-mode) .btn-secondary:hover {
+   background: #2d2d50;
+   border-color: #6c82f5;
+ }
+
+ :host-context(body.dark-mode) .success-screen {
+   background: #12121f;
+ }
+
+ :host-context(body.dark-mode) .success-card h1 {
+   color: #4ede8f;
+ }
+
+ :host-context(body.dark-mode) .ticket-id-box {
+   background: #1e1e35;
+   border-color: #6c82f5;
+ }
+
+ :host-context(body.dark-mode) .ticket-id-box span {
+   color: #888;
+ }
+
+ :host-context(body.dark-mode) .ticket-id-box strong {
+   color: #6c82f5;
+ }
+
+ @media (max-width: 850px) {
+   .booking-grid {
+     grid-template-columns: 1fr;
+   }
+
+   .right-col {
+     order: -1;
+   }
+
+   .passenger-row {
+     flex-wrap: wrap;
+   }
+
+   .bag-options {
+     flex-direction: column;
+   }
+
+   .sami {
+     flex-direction: column;
+   }
+ }
+
+ @media (max-width: 500px) {
+   .input-row {
+     flex-direction: column;
+   }
+ }

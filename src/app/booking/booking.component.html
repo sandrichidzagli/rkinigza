@@ -1,0 +1,173 @@
+<div class="success-screen" *ngIf="successScreen">
+  <div class="success-card">
+    <div class="check-icon">✓</div>
+    <h1>{{ t('successTitle') }}</h1>
+    <div class="ticket-id-box">
+      <span>{{ t('ticketNumberLabel') }}</span>
+      <strong>{{ ticketId }}</strong>
+    </div>
+    <p>{{ t('totalPriceLabel') }} <strong>{{ totalPrice.toFixed(2) }}₾</strong></p>
+    <button class="btn-primary" (click)="router.navigate(['/'])">{{ t('returnHomeBtn') }}</button>
+  </div>
+</div>
+
+<div *ngIf="!successScreen">
+  <app-header></app-header>
+<section>
+  <h1>მგზავრის მონაცემები</h1>
+</section>
+  <main>
+    <div class="container booking-grid">
+
+
+      <div class="left-col">
+        <div class="card">
+          <div class="page-title">{{ t('bookingTitle') }}</div>
+
+      
+          <div class="route-info">
+            <div class="train-meta">
+              <span class="train-number">#{{ train?.number }}</span>
+              <span class="train-name">{{ train?.name }}</span>
+            </div>
+            <div class="route-point">
+              <span class="time">{{ train?.departure || '00:00' }}</span>
+              <span class="city">{{ train?.from || '---' }}</span>
+            </div>
+            <div class="route-point">
+              <span class="time">{{ train?.arrive || '00:00' }}</span>
+              <span class="city">{{ train?.to || '---' }}</span>
+            </div>
+          </div>
+
+         
+          <h3 class="section-title">{{ t('contactInfoTitle') }}</h3>
+          <div class="input-row">
+            <input type="email" [(ngModel)]="email" name="email" [placeholder]="t('emailPlaceholder')" required>
+            <input type="tel" [(ngModel)]="phone" name="phone" [placeholder]="t('phonePlaceholder')" required>
+          </div>
+
+          
+          <h3 class="section-title">{{ t('passengerInfoTitle') }}</h3>
+          <p class="passenger-label">{{ t('passenger1') }}</p>
+
+          <div class="passenger-row">
+            <div class="seat-display">
+              <span class="label">{{ t('seatLabel') }}: {{ selectedSeat?.number || '0' }}</span>
+            </div>
+            <div class="sami">
+              <input type="text" [(ngModel)]="firstName" name="firstName" [placeholder]="t('firstNamePlaceholder')" required>
+              <input type="text" [(ngModel)]="lastName" name="lastName" [placeholder]="t('lastNamePlaceholder')" required>
+              <input type="text" [(ngModel)]="personalId" name="personalId" maxlength="11" [placeholder]="t('idPlaceholder')" required>
+            </div>
+            <button type="button" class="btn-select-seat" (click)="openClassModal()">{{ t('selectSeatBtn') }}</button>
+          </div>
+
+        
+          <div class="baggage-section">
+            <div class="bag-options">
+              <div class="bag-item">
+                <div class="bag-icon-wrap">🎒</div>
+                <div class="bag-txt">
+                  <h5>{{ t('bagPersonal') }}</h5>
+                  <p>{{ t('bagPersonalDesc') }}</p>
+                  <div class="bag-status included">
+                    <span class="status-icon check">✓</span> {{ t('bagIncluded') }}
+                  </div>
+                </div>
+              </div>
+              <div class="bag-item">
+                <div class="bag-icon-wrap">🧳</div>
+                <div class="bag-txt">
+                  <h5>{{ t('bagCarryOn') }}</h5>
+                  <p>{{ t('bagCarryOnDesc') }}</p>
+                  <div class="bag-status included">
+                    <span class="status-icon check">✓</span> {{ t('bagIncluded') }}
+                  </div>
+                </div>
+              </div>
+              <div class="bag-item" style="cursor:pointer" (click)="toggleBag('checked')">
+                <div class="bag-icon-wrap">💼</div>
+                <div class="bag-txt">
+                  <h5>{{ t('bagChecked') }}</h5>
+                  <p>{{ t('bagCheckedDesc') }}</p>
+                  <div class="bag-status" [class.included]="baggage.checked" [class.not-included]="!baggage.checked">
+                    <span class="status-icon" [class.check]="baggage.checked" [class.cross]="!baggage.checked">
+                      {{ baggage.checked ? '✓' : '✕' }}
+                    </span>
+                    {{ baggage.checked ? t('bagIncludedPrice') : t('bagNotIncluded') }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    
+      <div class="right-col">
+        <div class="card right-panel">
+          <h3 style="color: blue;">{{ t('invoiceTitle') }}</h3>
+          <div class="invoice-header-row">
+            <span>{{ t('seatCol') }}</span>
+            <span>{{ t('priceCol') }}</span>
+          </div>
+          <div class="inv-divider"></div>
+          <div class="inv-row">
+            <span>{{ t('totalLabel') }}</span>
+            <span>{{ total.toFixed(2) }}₾</span>
+          </div>
+          <div class="inv-row" *ngIf="baggage.checked">
+            <span>{{ t('luggageLabel') }}</span>
+            <span>+{{ CHECKED_BAG_PRICE.toFixed(2) }}₾</span>
+          </div>
+          <div class="terms-area">
+            <label class="checkbox-container">
+              <input type="checkbox" [(ngModel)]="termsChecked">
+              {{ t('termsLabel') }}
+            </label>
+          </div>
+          <button type="button" (click)="register()" class="btn-primary">{{ t('registerTicketBtn') }}</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>
+
+
+<div class="modal-overlay" *ngIf="showClassModal" (click)="closeClassModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ t('chooseClassTitle') }}</h3>
+      <button class="close-x" (click)="closeClassModal()">✕</button>
+    </div>
+    <div class="class-grid">
+      <button class="btn-secondary" (click)="chooseClass(1)">{{ t('class2nd') }}</button>
+      <button class="btn-secondary" (click)="chooseClass(2)">{{ t('class1st') }}</button>
+      <button class="btn-secondary" (click)="chooseClass(3)">{{ t('classBiz') }}</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal-overlay" *ngIf="showSeatModal" (click)="closeSeatModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ t('chooseSeatTitle') }}</h3>
+      <button class="close-x" (click)="closeSeatModal()">✕</button>
+    </div>
+    <div class="seat-grid">
+      <div *ngFor="let seat of seats" class="seat"
+        [class.occupied]="seat.isOccupied"
+        [class.selected]="selectedSeat?.seatId === seat.seatId"
+        (click)="selectSeat(seat)">
+        {{ seat.number }}
+      </div>
+    </div>
+    <button class="btn-primary full-width" (click)="closeSeatModal()">{{ t('confirmBtn') }}</button>
+  </div>
+</div>
